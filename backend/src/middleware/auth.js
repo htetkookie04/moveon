@@ -9,9 +9,11 @@ export async function authMiddleware(req, res, next) {
   console.log('Auth middleware - cookies:', Object.keys(req.cookies || {}));
   console.log('Auth middleware - headers:', req.headers.authorization ? 'authorization header present' : 'no authorization header');
   
-  const token =
-    req.cookies?.token ||
-    req.headers.authorization?.replace('Bearer ', '');
+  let token = req.cookies?.token;
+  // Also check for Bearer token in header as fallback
+  if (!token && req.headers.authorization?.startsWith('Bearer ')) {
+    token = req.headers.authorization.split(' ')[1];
+  }
 
   if (!token) {
     console.log('No token found in cookies or headers');

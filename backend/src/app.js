@@ -43,6 +43,7 @@ app.use(
         return callback(null, true);
       }
       
+      console.log('Blocked by CORS:', origin);  // Debug logging
       callback(new Error('Not allowed by CORS'));
     },
     credentials: true,
@@ -58,6 +59,9 @@ app.get('/debug-cookies', (req, res) => {
     cookies: req.cookies,
     origin: req.headers.origin,
     userAgent: req.headers['user-agent'],
+    authorization: req.headers.authorization,
+    host: req.headers.host,
+    forwardedHost: req.headers['x-forwarded-host'],
   });
 });
 
