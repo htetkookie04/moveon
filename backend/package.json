@@ -11,7 +11,7 @@
     "db:migrate": "prisma migrate dev --schema=../database/prisma/schema.prisma --name init",
     "db:migrate:prod": "prisma migrate deploy --schema=../database/prisma/schema.prisma",
     "db:push": "prisma db push --schema=../database/prisma/schema.prisma",
-    "db:seed": "node -r dotenv/config scripts/seed.js",
+    "db:seed": "node scripts/seed.js",
     "db:studio": "prisma studio --schema=../database/prisma/schema.prisma"
   },
   "dependencies": {
