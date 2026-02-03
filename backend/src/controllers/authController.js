@@ -41,9 +41,10 @@ export async function register(req, res, next) {
     res
       .cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        secure: true, // Always secure in production
+        sameSite: 'none', // Required for cross-origin cookies
         maxAge: 7 * 24 * 60 * 60 * 1000,
+        domain: '.onrender.com', // Set domain for Render deployment
       })
       .status(201)
       .json({ user, token });
@@ -80,9 +81,10 @@ export async function login(req, res, next) {
     res
       .cookie('token', token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === 'production',
-        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
+        secure: true, // Always secure in production
+        sameSite: 'none', // Required for cross-origin cookies
         maxAge: 7 * 24 * 60 * 60 * 1000,
+        domain: '.onrender.com', // Set domain for Render deployment
       })
       .json({ user: userData, token });
   } catch (err) {
@@ -91,7 +93,12 @@ export async function login(req, res, next) {
 }
 
 export function logout(req, res) {
-  res.clearCookie('token', { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' }).json({ message: 'Logged out' });
+  res.clearCookie('token', { 
+    httpOnly: true, 
+    secure: true, 
+    sameSite: 'none',
+    domain: '.onrender.com'
+  }).json({ message: 'Logged out' });
 }
 
 export async function me(req, res, next) {
