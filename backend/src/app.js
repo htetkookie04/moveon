@@ -23,12 +23,14 @@ import noticeRoutes from './routes/noticeRoutes.js';
 const app = express();
 
 const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+const RENDER_BACKEND_URL = process.env.RENDER_BACKEND_URL || 'https://moveon.onrender.com';
+
 const ALLOWED_ORIGINS = [
   'http://localhost:5173',
-  'https://kookiemoveon.netlify.app'
+  'http://localhost:3000',
+  'https://kookiemoveon.netlify.app',
+  RENDER_BACKEND_URL
 ];
-
-const RENDER_BACKEND_URL = process.env.RENDER_BACKEND_URL || 'https://moveon.onrender.com';
 
 app.use(
   cors({
@@ -41,14 +43,10 @@ app.use(
         return callback(null, true);
       }
       
-      // Allow the specific Render backend URL as well
-      if (origin === 'https://kookiemoveon.netlify.app' || origin === RENDER_BACKEND_URL) {
-        return callback(null, true);
-      }
-      
       callback(new Error('Not allowed by CORS'));
     },
     credentials: true,
+    optionsSuccessStatus: 200
   })
 );
 app.use(express.json());
