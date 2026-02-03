@@ -52,6 +52,15 @@ app.use(
 app.use(express.json());
 app.use(cookieParser());
 
+// Test endpoint to debug cookies
+app.get('/debug-cookies', (req, res) => {
+  res.json({
+    cookies: req.cookies,
+    origin: req.headers.origin,
+    userAgent: req.headers['user-agent'],
+  });
+});
+
 // Rate limit login/register (relaxed in development)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
