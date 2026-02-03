@@ -28,6 +28,8 @@ const ALLOWED_ORIGINS = [
   'https://kookiemoveon.netlify.app'
 ];
 
+const RENDER_BACKEND_URL = process.env.RENDER_BACKEND_URL || 'https://moveon.onrender.com';
+
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -39,9 +41,8 @@ app.use(
         return callback(null, true);
       }
       
-      // For production, you might want to be more strict
-      // but for now, we'll allow the Netlify URL
-      if (origin === 'https://kookiemoveon.netlify.app') {
+      // Allow the specific Render backend URL as well
+      if (origin === 'https://kookiemoveon.netlify.app' || origin === RENDER_BACKEND_URL) {
         return callback(null, true);
       }
       
