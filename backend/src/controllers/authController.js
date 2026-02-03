@@ -42,7 +42,7 @@ export async function register(req, res, next) {
       .cookie('token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .status(201)
@@ -81,7 +81,7 @@ export async function login(req, res, next) {
       .cookie('token', token, {
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
-        sameSite: 'lax',
+        sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax',
         maxAge: 7 * 24 * 60 * 60 * 1000,
       })
       .json({ user: userData, token });
@@ -91,7 +91,7 @@ export async function login(req, res, next) {
 }
 
 export function logout(req, res) {
-  res.clearCookie('token').json({ message: 'Logged out' });
+  res.clearCookie('token', { httpOnly: true, secure: process.env.NODE_ENV === 'production', sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax' }).json({ message: 'Logged out' });
 }
 
 export async function me(req, res, next) {
