@@ -1,0 +1,34 @@
+# Render Blueprint - Backend Web Service
+# https://render.com/docs/blueprint-spec
+# Place in repo root; set Root Directory to "backend" in Dashboard if not using Blueprint
+services:
+  - type: web
+    name: moveon-backend
+    runtime: node
+    region: oregon
+    rootDir: backend
+
+    # Build: install deps, generate Prisma client
+    buildCommand: npm install && npx prisma generate
+
+    # Run migrations before each deploy
+    preDeployCommand: npx prisma migrate deploy
+
+    # Start the server
+    startCommand: npm start
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET
+        generateValue: true
+      - key: FRONTEND_URL
+        value: https://kookiemoveon.netlify.app
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false
