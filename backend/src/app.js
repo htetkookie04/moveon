@@ -81,6 +81,19 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/targets', targetRoutes);
 app.use('/banner', bannerRoutes);
+
+// Public root - avoid 401 when visiting backend URL directly
+app.get('/', (req, res) => {
+  res.json({
+    name: 'Move on Calendar API',
+    frontend: 'https://kookiemoveon.netlify.app',
+    health: '/health',
+  });
+});
+
+// Avoid 401 on favicon request
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
 app.use('/', noticeRoutes);
 app.use('/', calendarRoutes);
 
