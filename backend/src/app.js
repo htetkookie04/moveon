@@ -1,6 +1,10 @@
 import dotenv from 'dotenv';
+import path from 'path';
+import { fileURLToPath } from 'url';
 // Load .env in development; production uses Render env vars (dotenv.config is no-op if .env missing)
 dotenv.config();
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
  * Move on Calendar - Express backend
@@ -81,6 +85,9 @@ app.use('/auth', authRoutes);
 app.use('/admin', adminRoutes);
 app.use('/targets', targetRoutes);
 app.use('/banner', bannerRoutes);
+
+// Serve uploaded banner images (disk fallback when Cloudinary not configured)
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 // Public root - avoid 401 when visiting backend URL directly
 app.get('/', (req, res) => {

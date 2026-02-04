@@ -81,6 +81,10 @@ Frontend runs at `http://localhost:5173`.
 | JWT_SECRET    | Secret for JWT (min 32 chars)        |
 | JWT_EXPIRES_IN| Token expiry (e.g. 7d)               |
 | FRONTEND_URL  | Frontend URL for CORS (e.g. http://localhost:5173) |
+| RENDER_BACKEND_URL | Backend URL in production (e.g. https://moveon.onrender.com) |
+| CLOUDINARY_CLOUD_NAME | Cloudinary cloud name (required for banner uploads in production) |
+| CLOUDINARY_API_KEY | Cloudinary API key |
+| CLOUDINARY_API_SECRET | Cloudinary API secret |
 
 **Frontend**
 
@@ -152,7 +156,7 @@ After `npm run db:seed`:
 - Admins can upload a banner at `/admin/banner`
 - Supported formats: PNG, JPG, WebP (max 2MB)
 - The active banner appears on every user's dashboard (right panel)
-- Uploads are stored in `backend/uploads/` (created automatically)
+- **Production (Render)**: Set `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` in Render env vars so banners are stored in Cloudinary. Without these, uploads use local disk (lost on redeploy).
 
 ## Production Build
 

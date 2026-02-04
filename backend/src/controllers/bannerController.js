@@ -13,8 +13,17 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /** Extract Cloudinary public_id from URL for destroy() */
 function getPublicIdFromCloudinaryUrl(url) {
-  const match = url.match(/\/upload\/v\d+\/(.+)\.\w+$/);
+  const match = url?.match(/\/upload\/v\d+\/(.+)\.\w+$/);
   return match ? match[1] : null;
+}
+
+/** Ensure imageUrl is absolute (frontend is on different origin than backend) */
+function toAbsoluteImageUrl(imageUrl, req) {
+  if (!imageUrl) return imageUrl;
+  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) return imageUrl;
+  const base = process.env.RENDER_BACKEND_URL || (req ? `${req.protocol}://${req.get('host')}` : 'http://localhost:5000');
+  const baseClean = base.replace(/\/$/, '');
+  return imageUrl.startsWith('/') ? baseClean + imageUrl : baseClean + '/' + imageUrl;
 }
 
 export async function getActiveBanner(req, res, next) {
@@ -28,7 +37,7 @@ export async function getActiveBanner(req, res, next) {
     }
     res.json({
       id: banner.id,
-      imageUrl: banner.imageUrl,
+      imageUrl: toAbsoluteImageUrl(banner.imageUrl, req),
       createdAt: banner.createdAt.toISOString(),
     });
   } catch (err) {
@@ -43,7 +52,8 @@ export async function uploadBanner(req, res, next) {
     }
 
     // Cloudinary: req.file.path is the full URL; disk: use /uploads/filename
-    const imageUrl = isConfigured ? req.file.path : '/uploads/' + req.file.filename;
+    const cloudinaryUrl = req.file.path || req.file.secure_url || req.file.url;
+    const imageUrl = isConfigured ? cloudinaryUrl : '/uploads/' + req.file.filename;
 
     await prisma.$transaction(async (tx) => {
       await tx.banner.updateMany({ data: { isActive: false } });
@@ -59,7 +69,7 @@ export async function uploadBanner(req, res, next) {
 
     res.status(201).json({
       id: banner.id,
-      imageUrl: banner.imageUrl,
+      imageUrl: toAbsoluteImageUrl(banner.imageUrl, req),
       createdAt: banner.createdAt.toISOString(),
     });
   } catch (err) {
