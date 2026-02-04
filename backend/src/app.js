@@ -68,7 +68,7 @@ app.get('/debug-cookies', (req, res) => {
 // Rate limit login/register (relaxed in development)
 const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: process.env.NODE_ENV === 'production' ? 10 : 50,
+  max: process.env.NODE_ENV === 'production' ? 30 : 50,
   message: { error: 'Too many attempts, try again later' },
   standardHeaders: true,
   legacyHeaders: false,
