@@ -22,7 +22,7 @@ import {
   deleteNoticeValidation,
 } from '../controllers/noticeController.js';
 import { authMiddleware, adminOnly } from '../middleware/auth.js';
-import { uploadBanner } from '../middleware/upload.js';
+import { uploadBanner } from '../config/cloudinary.js';
 
 const router = Router();
 

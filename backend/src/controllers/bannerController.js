@@ -1,13 +1,21 @@
 /**
  * Banner controller - active banner (public) + admin upload/delete
+ * Uses Cloudinary for storage when configured; falls back to local uploads
  */
 import { param, validationResult } from 'express-validator';
 import { prisma } from '../prisma/client.js';
 import path from 'path';
 import fs from 'fs';
 import { fileURLToPath } from 'url';
+import { cloudinary, isConfigured } from '../config/cloudinary.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+/** Extract Cloudinary public_id from URL for destroy() */
+function getPublicIdFromCloudinaryUrl(url) {
+  const match = url.match(/\/upload\/v\d+\/(.+)\.\w+$/);
+  return match ? match[1] : null;
+}
 
 export async function getActiveBanner(req, res, next) {
   try {
@@ -34,7 +42,8 @@ export async function uploadBanner(req, res, next) {
       return res.status(400).json({ error: 'No image file uploaded' });
     }
 
-    const imageUrl = '/uploads/' + req.file.filename;
+    // Cloudinary: req.file.path is the full URL; disk: use /uploads/filename
+    const imageUrl = isConfigured ? req.file.path : '/uploads/' + req.file.filename;
 
     await prisma.$transaction(async (tx) => {
       await tx.banner.updateMany({ data: { isActive: false } });
@@ -54,7 +63,8 @@ export async function uploadBanner(req, res, next) {
       createdAt: banner.createdAt.toISOString(),
     });
   } catch (err) {
-    if (req.file?.path && fs.existsSync(req.file.path)) {
+    // Rollback: delete local file only (Cloudinary has no local path)
+    if (!isConfigured && req.file?.path && fs.existsSync(req.file.path)) {
       fs.unlinkSync(req.file.path);
     }
     next(err);
@@ -78,9 +88,17 @@ export async function deleteBanner(req, res, next) {
 
     await prisma.banner.update({ where: { id }, data: { isActive: false } });
 
-    const filePath = path.join(__dirname, '../../uploads', path.basename(banner.imageUrl));
-    if (fs.existsSync(filePath)) {
-      fs.unlinkSync(filePath);
+    // Delete from Cloudinary if URL is from Cloudinary; else delete local file
+    if (isConfigured && banner.imageUrl?.includes('res.cloudinary.com')) {
+      const publicId = getPublicIdFromCloudinaryUrl(banner.imageUrl);
+      if (publicId) {
+        await cloudinary.uploader.destroy(publicId).catch(() => {});
+      }
+    } else {
+      const filePath = path.join(__dirname, '../../uploads', path.basename(banner.imageUrl));
+      if (fs.existsSync(filePath)) {
+        fs.unlinkSync(filePath);
+      }
     }
 
     res.json({ message: 'Banner removed' });

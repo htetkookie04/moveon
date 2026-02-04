@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+// Load .env in development; production uses Render env vars (dotenv.config is no-op if .env missing)
 dotenv.config();
 
 /**
@@ -29,7 +30,8 @@ const ALLOWED_ORIGINS = [
   'http://localhost:5173',
   'http://localhost:3000',
   'https://kookiemoveon.netlify.app',
-  RENDER_BACKEND_URL
+  'https://kookiemoveon.netlify.app/', // some clients send trailing slash
+  RENDER_BACKEND_URL,
 ];
 
 app.use(
