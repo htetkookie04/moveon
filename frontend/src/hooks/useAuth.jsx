@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, useEffect, useCallback } from 'react';
 import { authApi } from '../api/auth.js';
+import { setAuthToken } from '../api/axios.js';
 
 const AuthContext = createContext(null);
 
@@ -32,12 +33,14 @@ export function AuthProvider({ children }) {
 
   const login = async (email, password) => {
     const { data } = await authApi.login({ email, password });
+    setAuthToken(data.token);
     setUser(data.user);
     return data;
   };
 
   const register = async (name, email, password) => {
     const { data } = await authApi.register({ name, email, password });
+    setAuthToken(data.token);
     setUser(data.user);
     return data;
   };
@@ -46,6 +49,7 @@ export function AuthProvider({ children }) {
     try {
       await authApi.logout();
     } finally {
+      setAuthToken(null);
       setUser(null);
     }
   };
