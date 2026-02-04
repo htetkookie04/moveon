@@ -12,8 +12,6 @@ import rateLimit from 'express-rate-limit';
 
 import { errorHandler } from './middleware/errorHandler.js';
 
-import path from 'path';
-import { fileURLToPath } from 'url';
 import authRoutes from './routes/authRoutes.js';
 import adminRoutes from './routes/adminRoutes.js';
 import targetRoutes from './routes/targetRoutes.js';
@@ -98,9 +96,6 @@ app.get('/favicon.ico', (req, res) => res.status(204).end());
 
 app.use('/', noticeRoutes);
 app.use('/', calendarRoutes);
-
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
-app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 
 app.get('/health', (req, res) => res.json({ ok: true }));
 

@@ -17,7 +17,12 @@ const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
 const isConfigured = !!(cloudName && apiKey && apiSecret);
 
-if (isConfigured) {
+if (!isConfigured) {
+  console.warn(
+    '[Cloudinary] Missing CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, or CLOUDINARY_API_SECRET. ' +
+    'Banner uploads will use local disk (files are lost on redeploy). Add env vars on Render for production.'
+  );
+} else {
   cloudinary.config({
     cloud_name: cloudName,
     api_key: apiKey,

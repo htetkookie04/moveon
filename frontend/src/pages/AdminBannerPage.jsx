@@ -1,19 +1,16 @@
 /**
  * Admin Banner Management - upload, preview, delete banner
+ * Uses full Cloudinary URL from API; fallback when null or broken
  */
 import { useState, useEffect } from 'react';
 import { bannerApi } from '../api/banner.js';
 import { useToast } from '../context/ToastContext.jsx';
 
-function getImageUrl(imageUrl) {
-  if (!imageUrl) return null;
-  const base = import.meta.env.VITE_API_URL || '';
-  const uploadsBase = base.replace(/\/api\/?$/, '') || '';
-  return uploadsBase ? `${uploadsBase}${imageUrl}` : imageUrl;
-}
+const FALLBACK_PLACEHOLDER = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="400" height="225" viewBox="0 0 400 225"%3E%3Crect fill="%23e2e8f0" width="400" height="225"/%3E%3Ctext fill="%2394a3b8" x="50%25" y="50%25" dominant-baseline="middle" text-anchor="middle" font-size="14"%3ENo banner%3C/text%3E%3C/svg%3E';
 
 export default function AdminBannerPage() {
   const [banner, setBanner] = useState(null);
+  const [imageError, setImageError] = useState(false);
   const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [uploading, setUploading] = useState(false);
@@ -22,6 +19,7 @@ export default function AdminBannerPage() {
 
   const fetchBanner = async () => {
     try {
+      setImageError(false);
       const { data } = await bannerApi.getActive();
       setBanner(data);
     } catch {
@@ -140,9 +138,10 @@ export default function AdminBannerPage() {
           <>
             <div className="rounded-lg overflow-hidden border border-slate-200 max-w-md">
               <img
-                src={getImageUrl(banner.imageUrl)}
+                src={banner.imageUrl && !imageError ? banner.imageUrl : FALLBACK_PLACEHOLDER}
                 alt="Current banner"
                 className="w-full h-auto object-cover aspect-video"
+                onError={() => setImageError(true)}
               />
             </div>
             <button
