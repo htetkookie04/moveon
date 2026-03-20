@@ -106,7 +106,7 @@ export default function DayEntryModal({ date, entry, onSave, onClose }) {
                   type="button"
                   onClick={() => setEmotionEmoji(emotionEmoji === emoji ? '' : emoji)}
                   className={`text-2xl p-1 rounded transition-colors ${
-                    emotionEmoji === emoji ? 'bg-streak-100 ring-2 ring-streak-500' : 'hover:bg-slate-100'
+                    emotionEmoji === emoji ? 'bg-streak-100 ring-2 ring-[#116176]' : 'hover:bg-slate-100'
                   }`}
                 >
                   {emoji}
@@ -133,7 +133,7 @@ export default function DayEntryModal({ date, entry, onSave, onClose }) {
             <button
               type="submit"
               disabled={saving}
-              className="flex-1 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600 disabled:opacity-50"
+              className="flex-1 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55] disabled:opacity-50"
             >
               {saving ? 'Saving...' : 'Save'}
             </button>

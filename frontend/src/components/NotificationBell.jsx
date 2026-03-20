@@ -140,7 +140,7 @@ export default function NotificationBell() {
               {unreadCount > 0 && (
                 <button
                   onClick={handleMarkAllRead}
-                  className="text-sm text-streak-600 hover:text-streak-700 font-medium"
+                  className="text-sm text-[#116176] hover:text-[#0d4f55] font-medium"
                 >
                   Mark all as read
                 </button>
@@ -149,7 +149,7 @@ export default function NotificationBell() {
             <div className="flex-1 overflow-y-auto">
               {loading ? (
                 <div className="p-6 flex justify-center">
-                  <div className="animate-spin w-8 h-8 border-2 border-streak-500 border-t-transparent rounded-full" />
+                  <div className="animate-spin w-8 h-8 border-2 border-[#116176] border-t-transparent rounded-full" />
                 </div>
               ) : notices.length === 0 ? (
                 <p className="p-6 text-slate-500 text-center text-sm">No notices</p>
@@ -161,7 +161,7 @@ export default function NotificationBell() {
                         onClick={() => handleNoticeClick(n)}
                         className={`w-full text-left px-4 py-3 hover:bg-slate-50 transition-colors border-l-4 ${
                           n.isRead ? 'border-l-transparent' : typeColors[n.type] || typeColors.INFO
-                        } ${!n.isRead ? 'bg-streak-50/30' : ''}`}
+                        } ${!n.isRead ? 'bg-[#8CF2F8]/30' : ''}`}
                       >
                         <p className="font-medium text-slate-800 truncate">{n.title}</p>
                         <p className="text-sm text-slate-500 truncate mt-0.5">

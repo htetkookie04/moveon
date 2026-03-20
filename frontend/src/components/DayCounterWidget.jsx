@@ -43,7 +43,7 @@ export default function DayCounterWidget({ targetId, stats, loading, error }) {
 
   return (
     <div
-      className="rounded-2xl bg-gradient-to-br from-streak-500 via-streak-600 to-violet-600 p-6 sm:p-8 text-white shadow-lg border border-streak-400/30"
+      className="rounded-2xl bg-[linear-gradient(90deg,#116176,#8CF2F8)] p-6 sm:p-8 text-white shadow-lg border border-[#116176]/30"
       data-testid="day-counter-widget"
     >
       <div className="flex items-center justify-between mb-4">

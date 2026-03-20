@@ -68,14 +68,14 @@ export default function Login() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 rounded-lg bg-gradient-to-r from-streak-500 to-streak-600 text-white font-medium hover:from-streak-600 hover:to-streak-700 disabled:opacity-50 transition-all"
+              className="w-full py-2.5 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[linear-gradient(90deg,#0d4f55,#8CF2F8)] disabled:opacity-50 transition-all"
             >
               {loading ? 'Signing in...' : 'Sign in'}
             </button>
           </form>
           <p className="mt-6 text-center text-sm text-slate-600">
             Don't have an account?{' '}
-            <Link to="/register" className="text-streak-600 hover:underline font-medium">
+            <Link to="/register" className="text-[#116176] hover:underline font-medium">
               Register
             </Link>
           </p>

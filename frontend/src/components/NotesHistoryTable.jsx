@@ -203,7 +203,7 @@ export default function NotesHistoryTable({
         <div className="overflow-x-auto">
           {loading ? (
             <div className="p-12 flex justify-center">
-              <div className="animate-spin w-10 h-10 border-2 border-streak-500 border-t-transparent rounded-full" />
+              <div className="animate-spin w-10 h-10 border-2 border-[#116176] border-t-transparent rounded-full" />
             </div>
           ) : items.length === 0 ? (
             <div className="p-12 text-center text-slate-500">No entries found</div>

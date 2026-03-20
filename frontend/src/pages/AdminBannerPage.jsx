@@ -103,7 +103,7 @@ export default function AdminBannerPage() {
               type="file"
               accept="image/png,image/jpeg,image/jpg,image/webp"
               onChange={handleFileChange}
-              className="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-streak-50 file:text-streak-700 file:font-medium hover:file:bg-streak-100"
+              className="block w-full text-sm text-slate-600 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-[#8CF2F8] file:text-[#116176] file:font-medium hover:file:bg-[#e0fcff]"
             />
           </div>
           {preview && (
@@ -115,7 +115,7 @@ export default function AdminBannerPage() {
             <button
               type="submit"
               disabled={!file || uploading}
-              className="px-4 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600 disabled:opacity-50"
+              className="px-4 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55] disabled:opacity-50"
             >
               {uploading ? 'Uploading...' : 'Save Banner'}
             </button>

@@ -52,7 +52,7 @@ export default function AdminUsers() {
   if (loading) {
     return (
       <div className="flex justify-center py-12">
-        <div className="animate-spin w-10 h-10 border-2 border-streak-500 border-t-transparent rounded-full" />
+        <div className="animate-spin w-10 h-10 border-2 border-[#116176] border-t-transparent rounded-full" />
       </div>
     );
   }
@@ -63,7 +63,7 @@ export default function AdminUsers() {
         <h1 className="font-display text-2xl font-bold text-slate-800">Manage Users</h1>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="px-4 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600"
+          className="px-4 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55]"
         >
           {showForm ? 'Cancel' : 'Add User'}
         </button>
@@ -114,7 +114,7 @@ export default function AdminUsers() {
           </div>
           <button
             type="submit"
-            className="mt-4 px-4 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600"
+            className="mt-4 px-4 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55]"
           >
             Create User
           </button>
@@ -159,7 +159,7 @@ export default function AdminUsers() {
                   <button
                     onClick={() => handleToggleActive(u.id)}
                     disabled={u.id === currentUser?.id}
-                    className="text-sm text-streak-600 hover:underline disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="text-sm text-[#116176] hover:text-[#0d4f55] disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     {u.isActive ? 'Deactivate' : 'Activate'}
                   </button>

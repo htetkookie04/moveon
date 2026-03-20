@@ -20,7 +20,7 @@ export class ErrorBoundary extends Component {
             <p className="text-slate-600 text-sm mb-4">{this.state.error?.message}</p>
             <button
               onClick={() => window.location.href = '/'}
-              className="px-4 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600"
+              className="px-4 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55]"
             >
               Reload page
             </button>

@@ -134,7 +134,7 @@ export default function AdminNoticesPage() {
           <button
             type="submit"
             disabled={sending}
-            className="px-4 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600 disabled:opacity-50"
+            className="px-4 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55] disabled:opacity-50"
           >
             {sending ? 'Sending…' : 'Send to All Users'}
           </button>
@@ -145,7 +145,7 @@ export default function AdminNoticesPage() {
         <h2 className="text-lg font-semibold text-slate-800 mb-4">Sent Notices</h2>
         {loading ? (
           <div className="flex justify-center py-8">
-            <div className="animate-spin w-10 h-10 border-2 border-streak-500 border-t-transparent rounded-full" />
+            <div className="animate-spin w-10 h-10 border-2 border-[#116176] border-t-transparent rounded-full" />
           </div>
         ) : notices.length === 0 ? (
           <p className="text-slate-500 py-4">No notices sent yet.</p>

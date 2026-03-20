@@ -13,7 +13,7 @@ function ProtectedRoute({ children, adminOnly }) {
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-50">
-        <div className="animate-spin w-10 h-10 border-2 border-streak-500 border-t-transparent rounded-full" />
+        <div className="animate-spin w-10 h-10 border-2 border-[#116176] border-t-transparent rounded-full" />
       </div>
     );
   }

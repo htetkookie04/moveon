@@ -22,7 +22,7 @@ export default function Layout({ children }) {
               </Link>
               <Link
                 to="/dashboard"
-                className="text-slate-600 hover:text-streak-600 transition-colors"
+                className="text-slate-600 hover:text-[#116176] transition-colors"
               >
                 Dashboard
               </Link>
@@ -30,19 +30,19 @@ export default function Layout({ children }) {
                 <>
                   <Link
                     to="/admin/users"
-                    className="text-slate-600 hover:text-streak-600 transition-colors"
+                    className="text-slate-600 hover:text-[#116176] transition-colors"
                   >
                     Users
                   </Link>
                   <Link
                     to="/admin/banner"
-                    className="text-slate-600 hover:text-streak-600 transition-colors"
+                    className="text-slate-600 hover:text-[#116176] transition-colors"
                   >
                     Banner
                   </Link>
                   <Link
                     to="/admin/notices"
-                    className="text-slate-600 hover:text-streak-600 transition-colors"
+                    className="text-slate-600 hover:text-[#116176] transition-colors"
                   >
                     Notices
                   </Link>

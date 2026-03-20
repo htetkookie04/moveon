@@ -112,7 +112,7 @@ export default function EntryDetailModal({ entry, onClose, onEdit, onDelete }) {
           <button
             type="button"
             onClick={handleEdit}
-            className="flex-1 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600"
+            className="flex-1 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55]"
           >
             Edit
           </button>

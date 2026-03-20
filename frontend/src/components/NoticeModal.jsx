@@ -36,7 +36,7 @@ export default function NoticeModal({ notice, onClose, onMarkRead }) {
               href={notice.linkUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-4 inline-block text-streak-600 hover:text-streak-700 font-medium"
+              className="mt-4 inline-block text-[#116176] hover:text-[#0d4f55] font-medium"
             >
               View link →
             </a>
@@ -46,7 +46,7 @@ export default function NoticeModal({ notice, onClose, onMarkRead }) {
           {!notice.isRead && (
             <button
               onClick={handleMarkRead}
-              className="px-4 py-2 rounded-lg bg-streak-500 text-white font-medium hover:bg-streak-600"
+              className="px-4 py-2 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[#0d4f55]"
             >
               Mark as read
             </button>
