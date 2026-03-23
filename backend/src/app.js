@@ -7,7 +7,7 @@ dotenv.config();
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 /**
- * Move on Calendar - Express backend
+ * Kookie Move On - Express backend
  */
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -92,7 +92,7 @@ app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
 // Public root - avoid 401 when visiting backend URL directly
 app.get('/', (req, res) => {
   res.json({
-    name: 'Move on Calendar API',
+    name: 'Kookie Move On API',
     frontend: 'https://kookiemoveon.netlify.app',
     health: '/health',
   });
@@ -110,5 +110,5 @@ app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
-  console.log(`Move on Calendar API running on port ${PORT}`);
+  console.log(`Kookie Move On API running on port ${PORT}`);
 });

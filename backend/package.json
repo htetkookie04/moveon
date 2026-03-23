@@ -1,7 +1,7 @@
 {
   "name": "move-on-calendar-backend",
   "version": "1.0.0",
-  "description": "Move on Calendar - Backend API",
+  "description": "Kookie Move On - Backend API",
   "main": "src/app.js",
   "type": "module",
   "scripts": {

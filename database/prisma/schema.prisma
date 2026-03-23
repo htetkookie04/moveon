@@ -1,4 +1,4 @@
-// Prisma schema for Move on Calendar
+// Prisma schema for Kookie Move On
 generator client {
   provider = "prisma-client-js"
   output   = "../../backend/node_modules/.prisma/client"

@@ -1,4 +1,4 @@
-# Move on Calendar
+# Kookie Move On
 
 A production-ready full-stack web app to track no-contact days after a breakup. Track days, add notes and emotions, visualize progress on a calendar, and monitor streaks.
 

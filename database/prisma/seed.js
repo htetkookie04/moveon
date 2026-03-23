@@ -1,5 +1,5 @@
 /**
- * Seed script - creates admin user for Move on Calendar
+ * Seed script - creates admin user for Kookie Move On
  * Run: npm run db:seed (from backend directory)
  * Uses dotenv via -r dotenv/config so .env is loaded from backend/
  */

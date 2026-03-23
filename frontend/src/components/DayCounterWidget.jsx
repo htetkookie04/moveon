@@ -3,8 +3,6 @@
  * Tailwind gradient card, mobile responsive
  * Accepts stats from parent so it can refetch when calendar entry is saved
  */
-const EMOJI_OPTIONS = ['💪', '🔥', '✨', '🌟', '💜', '🌸', '🌈', '🎯'];
-
 export default function DayCounterWidget({ targetId, stats, loading, error }) {
 
   if (!targetId) {
@@ -48,7 +46,7 @@ export default function DayCounterWidget({ targetId, stats, loading, error }) {
     >
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-display font-semibold text-lg text-white/90">Move On</h3>
-        <span className="text-2xl">{EMOJI_OPTIONS[stats.currentStreakDays % EMOJI_OPTIONS.length]}</span>
+        <img src="/Kookie Move On.png" alt="Kookie" className="w-10 h-10 object-contain rounded-full" />
       </div>
 
       <div className="text-5xl sm:text-6xl font-display font-bold mb-2">

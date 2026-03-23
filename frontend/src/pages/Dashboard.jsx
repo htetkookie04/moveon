@@ -22,7 +22,7 @@ export default function Dashboard() {
   const [selectedTargetId, setSelectedTargetId] = useState(null);
   const [entries, setEntries] = useState([]);
   const [loadingTargets, setLoadingTargets] = useState(true);
-  const [loadingEntries, setLoadingEntries] = useState(false);
+  const [, setLoadingEntries] = useState(false);
   const [error, setError] = useState('');
 
   const { stats, loading: statsLoading, refetch: refetchStats } = useStats(selectedTargetId);
@@ -119,15 +119,15 @@ export default function Dashboard() {
 
   if (loadingTargets) {
     return (
-      <div className="flex justify-center py-12">
+      <div className="flex justify-center py-16">
         <div className="animate-spin w-10 h-10 border-2 border-[#116176] border-t-transparent rounded-full" />
       </div>
     );
   }
 
   return (
-    <div className="space-y-8">
-      <h1 className="font-display text-2xl font-bold text-slate-800">Dashboard</h1>
+    <div className="space-y-6 sm:space-y-8">
+      <h1 className="font-display text-xl sm:text-2xl font-bold text-slate-800">Dashboard</h1>
 
       {error && (
         <div className="p-3 rounded-lg bg-red-50 text-red-700 text-sm">{error}</div>
@@ -135,7 +135,8 @@ export default function Dashboard() {
 
       {selectedTargetId && (
         <>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Top section: widget + sidebar */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
             <div className="lg:col-span-2">
               <DayCounterWidget
                 targetId={selectedTargetId}
@@ -144,14 +145,17 @@ export default function Dashboard() {
                 error={null}
               />
             </div>
-            <div className="space-y-6">
+            <div className="space-y-4 sm:space-y-6">
               <StatsCards stats={stats} targetName={selectedTarget?.displayName || 'My Journey'} />
               <DashboardBanner />
             </div>
           </div>
 
+          {/* Calendar */}
           <div>
-            <h2 className="font-display text-lg font-semibold text-slate-800 mb-4">Calendar</h2>
+            <h2 className="font-display text-base sm:text-lg font-semibold text-slate-800 mb-3 sm:mb-4">
+              Calendar
+            </h2>
             <Calendar
               entries={entries}
               targetId={selectedTargetId}
@@ -162,6 +166,7 @@ export default function Dashboard() {
             />
           </div>
 
+          {/* Notes history */}
           <div>
             <NotesHistoryTable
               targetId={selectedTargetId}

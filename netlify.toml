@@ -1,4 +1,4 @@
-# Netlify config for Move on Calendar frontend (Vite + React SPA)
+# Netlify config for Kookie Move On frontend (Vite + React SPA)
 
 [build]
   base = "frontend"

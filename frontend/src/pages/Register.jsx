@@ -37,10 +37,10 @@ export default function Register() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-slate-50 via-streak-50/30 to-slate-100 px-4">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <h1 className="font-display text-3xl font-bold text-slate-800">Move on Calendar</h1>
+          <h1 className="font-display text-3xl font-bold text-slate-800">Kookie Move On</h1>
           <p className="text-slate-600 mt-1">Start your no-contact journey</p>
         </div>
-        <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-8">
+        <div className="bg-white rounded-2xl shadow-xl border border-slate-200 p-6 sm:p-8">
           <h2 className="text-xl font-semibold text-slate-800 mb-6">Create account</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             {error && (
@@ -53,7 +53,7 @@ export default function Register() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500"
+                className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
                 placeholder="Enter your name"
               />
             </div>
@@ -64,7 +64,7 @@ export default function Register() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
-                className="w-full px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500"
+                className="w-full px-4 py-3 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
                 placeholder="Enter the Email"
               />
             </div>
@@ -81,7 +81,7 @@ export default function Register() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full py-2.5 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:bg-[linear-gradient(90deg,#0d4f55,#8CF2F8)] disabled:opacity-50 transition-all"
+              className="w-full py-3 rounded-lg bg-[linear-gradient(90deg,#116176,#8CF2F8)] text-white font-medium hover:opacity-90 disabled:opacity-50 transition-opacity"
             >
               {loading ? 'Creating account...' : 'Register'}
             </button>

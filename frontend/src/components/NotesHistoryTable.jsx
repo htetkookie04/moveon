@@ -167,18 +167,18 @@ export default function NotesHistoryTable({
         </h2>
 
         {/* Filters */}
-        <div className="p-4 border-b border-slate-200 space-y-3 sm:flex sm:flex-wrap sm:gap-3 sm:items-center">
+        <div className="p-4 border-b border-slate-200 flex flex-col sm:flex-row sm:flex-wrap gap-2 sm:gap-3 sm:items-center">
           <input
             type="text"
             placeholder="Search in note & emotion..."
             value={searchInput}
             onChange={handleSearch}
-            className="flex-1 min-w-[180px] px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
+            className="w-full sm:flex-1 sm:min-w-[180px] px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
           />
           <select
             value={statusFilter}
             onChange={handleStatusChange}
-            className="px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
           >
             {STATUS_OPTIONS.map((o) => (
               <option key={o.value || 'all'} value={o.value}>
@@ -189,7 +189,7 @@ export default function NotesHistoryTable({
           <select
             value={dateRange}
             onChange={handleDateRangeChange}
-            className="px-4 py-2 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
+            className="w-full sm:w-auto px-4 py-2.5 rounded-lg border border-slate-300 focus:outline-none focus:border-streak-500 text-sm"
           >
             {DATE_RANGE_OPTIONS.map((o) => (
               <option key={o.value} value={o.value}>

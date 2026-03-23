@@ -1,7 +1,7 @@
 /**
- * Stats cards - current streak, longest streak, total no-contact days, monthly breakdown
+ * Stats cards - current streak, longest streak, total no-contact days
  */
-export default function StatsCards({ stats, targetName }) {
+export default function StatsCards({ stats }) {
   if (!stats) return null;
 
   const cards = [
@@ -11,15 +11,16 @@ export default function StatsCards({ stats, targetName }) {
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+    <div className="grid grid-cols-3 gap-3">
       {cards.map((c) => (
         <div
           key={c.label}
-          className="bg-white rounded-xl border border-slate-200 p-4 shadow-sm"
+          className="bg-white rounded-xl border border-slate-200 p-3 sm:p-4 shadow-sm"
         >
-          <p className="text-sm text-slate-500">{c.label}</p>
-          <p className="text-2xl font-display font-bold text-slate-800 mt-1">
-            {c.value} <span className="text-base font-normal text-slate-500">{c.suffix}</span>
+          <p className="text-xs sm:text-sm text-slate-500 leading-tight">{c.label}</p>
+          <p className="text-lg sm:text-2xl font-display font-bold text-slate-800 mt-1">
+            {c.value}{' '}
+            <span className="text-xs sm:text-base font-normal text-slate-500">{c.suffix}</span>
           </p>
         </div>
       ))}

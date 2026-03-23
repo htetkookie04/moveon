@@ -18,7 +18,9 @@ body {
   background: linear-gradient(90deg, #116176, #8CF2F8) !important;
 }
 .react-calendar__tile--now {
-  @apply ring-2 ring-streak-400;
+  background: linear-gradient(white, white) padding-box,
+              linear-gradient(90deg, #116176, #8CF2F8) border-box !important;
+  border: 2px solid transparent !important;
 }
 .react-calendar__month-view__days__day--weekend {
   @apply text-slate-500;
