@@ -64,8 +64,8 @@ export default function DayCounterWidget({ targetId, stats, loading, error }) {
       </div>
 
       {!stats.todayMarked && (
-        <div className="mt-4 p-3 rounded-lg bg-amber-500/30 border border-amber-400/50">
-          <p className="text-sm font-medium text-amber-100">
+        <div className="mt-4 p-3 rounded-lg bg-white/15 border border-white/30 backdrop-blur-sm">
+          <p className="text-sm font-medium text-white/90">
             ⚠️ Today is not marked yet. Update your calendar to keep your streak accurate.
           </p>
         </div>
