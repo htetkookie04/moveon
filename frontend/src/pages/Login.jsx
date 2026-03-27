@@ -8,10 +8,10 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const { login, user } = useAuth();
+  const { login, user, loading: authLoading } = useAuth();
   const navigate = useNavigate();
 
-  if (user) {
+  if (!authLoading && user) {
     navigate('/dashboard', { replace: true });
     return null;
   }
